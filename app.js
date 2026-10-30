@@ -11,8 +11,7 @@ const translations={
 };
 Object.assign(translations.zh,{location:'中国 · 上海',routing:'时序驱动全局布线',chiplet:'大规模 Chiplet 布局',pdn:'供电网络建模'});
 Object.assign(translations.en,{location:'Shanghai, China',routing:'Timing-driven global routing',chiplet:'Large-scale chiplet placement',pdn:'Power-delivery-network modeling'});
-let language='zh';
-try{const saved=localStorage.getItem('bs-language');if(saved==='en'||saved==='zh')language=saved;}catch{}
+let language='en';
 const dialog=document.getElementById('citation-dialog');
 const languageButton=document.getElementById('language');
 function citation(p){return `@${p.type}{${p.id}2026,\n  title = {${p.title}},\n  author = {${p.authors.replace(/, and /g,' and ').replace(/, /g,' and ')}},\n  ${p.type==='article'?'journal':'booktitle'} = {${p.publication}},\n  year = {2026}${p.url?`,\n  url = {${p.url}}`:''}\n}`;}
@@ -34,7 +33,7 @@ function applyLanguage(){
  renderPapers();
 }
 applyLanguage();
-languageButton.addEventListener('click',()=>{language=language==='zh'?'en':'zh';try{localStorage.setItem('bs-language',language);}catch{}applyLanguage();});
+languageButton.addEventListener('click',()=>{language=language==='zh'?'en':'zh';applyLanguage();});
 let activeCitation='';
 document.getElementById('publication-list').addEventListener('click',event=>{
  const button=event.target.closest('[data-cite]');if(!button)return;
